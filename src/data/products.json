@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Carrot",
+      "description": "A delicious orange carrot. Carroty.",
+      "image": "carrot.jpg",
+      "price": 1.00
+    },
+    {
+      "id": 2,
+      "name": "Potato",
+      "description": "An earthy Idaho potato.",
+      "image": "potato.jpg",
+      "price": 2.00
+    },
+    {
+      "id": 3,
+      "name": "Apple",
+      "description": "A perfect Gala apple, picked at the peak of ripeness.",
+      "image": "apple.jpg",
+      "price": 3.00
+    }
+  ]
+}

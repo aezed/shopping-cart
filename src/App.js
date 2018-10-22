@@ -5,7 +5,8 @@ import Navigation from './Navigation';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className='page-container'>
+        <h1>Fruits and Roots</h1>
         <Navigation />
         <Router />
       </div>

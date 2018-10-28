@@ -1,4 +1,6 @@
 import React from 'react';
+import AddButton from './add-button';
+import RemoveButton from './remove-button';
 
 const ProductListItem = (props) => {
   return (
@@ -13,12 +15,19 @@ const ProductListItem = (props) => {
     <div>{props.product.description}</div>
     <div>${props.product.price}</div>
     <div>
-      <button
-        onClick={() => props.addToCart(props.product)}
-      >Add to Cart ({
-        (props.cartItem && props.cartItem.quantity) || 0
-      })
-      </button>
+      <AddButton
+        addToCart={props.addToCart}
+        product={props.product}
+        cartItem={props.cartItem}
+      />
+      {
+        props.cartItem
+        ? <RemoveButton
+          removeFromCart={props.removeFromCart}
+          cartItem={props.cartItem}
+        />
+        : null
+      }
     </div>
   </div>
   );

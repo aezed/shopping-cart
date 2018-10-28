@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductListItem = (props) => {
-  const thisItemInCart = props.cart.filter(item => item.id === props.products.id)[0];
+  const thisItemInCart = props.cart.filter(item => item.id === props.product.id)[0];
 
   return (
   <div className='product-list-item'>

@@ -7,15 +7,7 @@ import PAYMENT_SERVER_URL from './constants/server';
 
 const CURRENCY = 'USD';
 
-const fromDollarstoCents = amount => amount * 100;
-
-const successPayment = data => {
-  //alert('Payment Successful');
-};
-
-const errorPayment = data => {
-  alert('Payment Error');
-};
+const fromDollarstoCents = amount => parseInt(amount * 100);
 
 const onToken = amount => token =>
   axios.post(PAYMENT_SERVER_URL,
@@ -24,15 +16,36 @@ const onToken = amount => token =>
       currency: CURRENCY,
       amount: fromDollarstoCents(amount)
     })
-    .then(successPayment)
-    .catch(errorPayment);
+    .then(Checkout.successPayment)
+    .catch(Checkout.errorPayment);
 
-const Checkout = ({ amount }) =>
-  <StripeCheckout
-    amount={fromDollarstoCents(amount)}
-    token={onToken(amount)}
-    currency={CURRENCY}
-    stripeKey={STRIPE_PUBLISHABLE}
-  />
+export default class Checkout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {success: false, data: null}
+  }
 
-export default Checkout;
+  successPayment(data) {
+    this.setState({success:true, data});
+    alert(data);
+  }
+
+  errorPayment(data) {
+    alert('Payment Error');
+    console.log(data);
+  }
+
+  render() {
+    return (
+      <div>
+        <StripeCheckout
+          amount={fromDollarstoCents(this.props.amount)}
+          token={onToken(this.props.amount)}
+          currency={CURRENCY}
+          stripeKey={STRIPE_PUBLISHABLE}
+        />
+        {this.state.success === true && <div>Success</div>}
+      </div>
+    );
+  }
+};

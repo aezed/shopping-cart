@@ -7,7 +7,8 @@ const sort = items => items.sort((a, b) => a.id < b.id);
 const Cart = (props) => {
   const total = props.cart.reduce((acc, item) => {
     return acc + (item.price * item.quantity);
-  }, 0).toLocaleString("en-US",
+  }, 0);
+  const displayTotal = total.toLocaleString("en-US",
     {
       style: "currency",
       currency: "USD",
@@ -64,7 +65,7 @@ const Cart = (props) => {
           }
           <tr>
             <td>
-              <h4>Total: {total}</h4>
+              <h4>Total: {displayTotal}</h4>
             </td>
           </tr>
         </tbody>
